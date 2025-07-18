@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FRESH MILK STORE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fffef7;
+      color: #333;
+    }
+
+    header {
+      background: #cceeff;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      color: #1a3f5f;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav button {
+      padding: 10px 15px;
+      margin: 5px;
+      background: #0077b6;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bg1 { background: #fffdfd; }
+    .bg2 { background: #fff0f5; }
+    .bg3 { background: #f0fff0; }
+
+    .collapsible-form {
+      display: none;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin-top: 20px;
+    }
+
+    .collapsible-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .collapsible-form button {
+      background: #0099cc;
+      color: white;
+      padding: 10px;
+      border: none;
+      width: 100%;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .product {
+      background: #ffffff;
+      border: 2px solid #cdd;
+      border-radius: 15px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 0 10px #ddd;
+    }
+
+    .product img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .product button {
+      background: #ff66b2;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .success-msg {
+      display: none;
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+
+    footer {
+      text-align: center;
+      background: #e0f7ff;
+      padding: 20px;
+      font-size: 1em;
+      color: #555;
+    }
+
+    img.milk-deco {
+      width: 120px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" class="milk-deco" alt="milk" />
+    <h1>FRESH MILK STORE</h1>
+    <nav>
+      <button onclick="toggleLogin()">Login</button>
+      <button onclick="toggleSignup()">Signup</button>
+      <button onclick="scrollToProducts()">Products</button>
+    </nav>
+  </header>
+
+  <!-- Slide 1: Login/Signup Section -->
+  <section class="section bg1" id="auth">
+    <div id="loginForm" class="collapsible-form">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" />
+      <input type="password" placeholder="Password" />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <div id="signupForm" class="collapsible-form">
+      <h2>Signup</h2>
+      <input type="text" placeholder="Username" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button onclick="signup()">Signup</button>
+    </div>
+  </section>
+
+  <!-- Slide 2: Products -->
+  <section class="section bg2" id="products">
+    <h2>🛒 Our Products</h2>
+    <div class="products">
+      <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="Milk 1L" />
+        <h3>Milk - 1 Litre</h3>
+        <p>Price: ₹60</p>
+        <button onclick="addToCart('Milk 1L - ₹60')">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="Milk Half" />
+        <h3>Milk - 1/2 Litre</h3>
+        <p>Price: ₹30</p>
+        <button onclick="addToCart('Milk 1/2L - ₹30')">Add to Cart</button>
+      </div>
+
+      <div class="product">
+        <img src="https://cdn-icons-png.flaticon.com/512/3421/3421693.png" alt="Ice Cream" />
+        <h3>Organic Ice Cream</h3>
+        <p>Made from Organic Milk</p>
+        <button onclick="addToCart('Organic Ice Cream')">Add to Cart</button>
+      </div>
+    </div>
+    <div class="success-msg" id="orderSuccess">✅ Your order was successfully placed!</div>
+  </section>
+
+  <!-- Slide 3: Footer -->
+  <section class="section bg3">
+    <h2>Thank you for visiting 🐄</h2>
+    <p>Pure and fresh milk delivered to your doorstep.</p>
+  </section>
+
+  <footer>
+    © 2025 FRESH MILK STORE | Designed by Leelasairam ✨
+  </footer>
+
+  <script>
+    function toggleLogin() {
+      document.getElementById("loginForm").style.display =
+        document.getElementById("loginForm").style.display === "block" ? "none" : "block";
+      document.getElementById("signupForm").style.display = "none";
+    }
+
+    function toggleSignup() {
+      document.getElementById("signupForm").style.display =
+        document.getElementById("signupForm").style.display === "block" ? "none" : "block";
+      document.getElementById("loginForm").style.display = "none";
+    }
+
+    function scrollToProducts() {
+      document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+    }
+
+    function login() {
+      alert("Login successful!");
+    }
+
+    function signup() {
+      alert("Signup successful!");
+    }
+
+    function addToCart(item) {
+      document.getElementById("orderSuccess").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("orderSuccess").style.display = "none";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
